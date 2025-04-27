@@ -1,54 +1,28 @@
-# React + TypeScript + Vite
+# Backpack Front End Take Home
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
+  <!-- - [Project Requirements](#project-requirements)
+  - [Setup](#setup)
+  - [Planning](#planning) -->
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Requirements
+Build a UI that displays a customer’s bank account and routing
+numbers, available and pending balances, and transactions.
 
-## Expanding the ESLint configuration
+* UI for displaying, concealing, and copying account and routing numbers
+* UI for displaying the current and available balance
+* UI for displaying transactions
+* README that explains your decisions and design choices and also includes instructions
+on how to run the application.
+* Technology requirements: Build the web app using React. The rest is up to you!
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
+THIS IS THE SETUP SECTION
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Design & Wireframe
+I used backpack branding (colors, logo, fonts - derived from inspecting the site) and design to develop a basic design system. From there I created simple wireframe, starting with a mobile and then desktop view.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Fonts
+Header Font - [Archivo](https://fonts.google.com/specimen/Archivo)
+Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
