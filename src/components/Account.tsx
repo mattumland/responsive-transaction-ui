@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 interface AccountProps {
   name: string;
@@ -22,7 +24,7 @@ type BalanceResponse = {
     }
   }
 
-export const formatBalanceData = (data: BalanceResponse): Balance => {
+const formatBalanceData = (data: BalanceResponse): Balance => {
   const { bank_account_balance } = data.data
   const availableDollars = bank_account_balance.available_balance_in_cents/100
   const pendingDollars = bank_account_balance.pending_balance_in_cents/100
@@ -56,13 +58,30 @@ function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0' }: AccountP
     fetchBalance();
   }, [])
 
+
   return (
-    <section className="bg-lightGray rounded-lg">
+    <section className="bg-lightGray rounded-lg transition-all duration-500 ease-in ">
       <h2 className="bg-bpBlue text-lightGray p-4 rounded-t-lg">{name}</h2>
-      <div className="p-4 text-right">
+      <div className="p-4 text-right text-gray-600">
         <p className="text-4xl">{balance?.availableBalance}</p>
         <p>Available balance</p>
       </div>
+
+      <Disclosure as="div" className="p-2">
+        <DisclosureButton className="group w-full flex items-center gap-2 text-bpBlue">
+          <h3>Account Details</h3>
+          <ChevronDownIcon className="w-5 group-data-open:rotate-180 transition-all" />
+        </DisclosureButton>
+        <DisclosurePanel
+          transition
+          className="text-gray-600 duration-200 ease-in data-closed:opacity-0"
+        >
+          <div className="flex justify-between">
+            <p>Pending balance</p>
+            <p>{balance?.pendingBalance}</p>
+          </div>
+        </DisclosurePanel>
+      </Disclosure>
     </section>
   )
 }

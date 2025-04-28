@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
 import Account from './components/Account'
