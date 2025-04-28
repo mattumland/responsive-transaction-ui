@@ -1,7 +1,10 @@
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
+import { useState } from 'react'
 
 function App() {
+  const [userAccounts, setUserAccounts] = useState()
+  const [loading, setLoading] = useState(true)
 
   return (
     <>
@@ -10,8 +13,8 @@ function App() {
           <img src={bpLogo} />
         </div>
       </header>
-      <section className="max-w-6xl p-4 m-auto">
-        <h1 className='text-bpblue '>Accounts</h1>
+      <section className="p-4">
+        <h1 className='text-bpblue max-w-6xl m-auto'>Accounts</h1>
       </section>
     </>
   )
