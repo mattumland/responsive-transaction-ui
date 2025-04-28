@@ -30,8 +30,9 @@ Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
 
 ### Tailwind organization
 1. Display
-2. Size
-3. Margin, border, padding
+2. Color
+3. Size
+4. Margin, border, padding
 
 
 ## Data
