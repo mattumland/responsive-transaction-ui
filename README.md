@@ -26,3 +26,9 @@ I used backpack branding (colors, logo, fonts - derived from inspecting the site
 ### Fonts
 Header Font - [Archivo](https://fonts.google.com/specimen/Archivo)
 Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
+
+
+### Tailwind organization
+1. Display
+2. Size
+3. Margin, border, padding
