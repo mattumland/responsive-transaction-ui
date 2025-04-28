@@ -3,7 +3,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bpblue: #033AFC;
+  --color-bpBlue: #033AFC;
+  --color-lightGray: #F7F7F7;
 }
 
 @layer base {
@@ -11,5 +12,11 @@
       font-family: Archivo;
       font-size: var(--text-3xl);
       font-weight: 800;
+  }
+
+  h2 {
+    font-family: Archivo;
+    font-size: var(--text-xl);
+    font-weight: 600;
   }
 }
