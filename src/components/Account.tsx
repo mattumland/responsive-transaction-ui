@@ -69,7 +69,7 @@ function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0', accountNum
       </div>
 
       <Disclosure as="div" className="p-2">
-        <DisclosureButton className="group w-full flex items-center gap-2 text-bpBlue">
+        <DisclosureButton className="group flex items-center gap-2 text-bpBlue border-b-2 border-transparent hover:border-b-2 hover:border-bpBlue hover:cursor-pointer transition-all">
           <h3>Account Details</h3>
           <ChevronDownIcon className="w-5 group-data-open:rotate-180 transition-all" />
         </DisclosureButton>
