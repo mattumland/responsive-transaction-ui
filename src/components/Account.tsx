@@ -83,9 +83,9 @@ function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0', accountNum
           </div>
           <div className="mt-2">
             <p className="font-medium">Account Number</p>
-            <ClickToCopy num={accountNumber}/>
+            <ClickToCopy text={accountNumber}/>
             <p className="font-medium">Routing Number</p>
-            <ClickToCopy num={routingNumber}/>
+            <ClickToCopy text={routingNumber}/>
           </div>
         </DisclosurePanel>
       </Disclosure>

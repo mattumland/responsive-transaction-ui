@@ -18,7 +18,7 @@ function CopiedIcon(): ReactElement {
 }
 
 
-function ClickToCopy({num}: {num: string} ): ReactElement {
+function ClickToCopy({text}: {text: string} ): ReactElement {
   const [copied, setCopied] = useState(false)
 
   const resetCopied = async () => {
@@ -28,14 +28,14 @@ function ClickToCopy({num}: {num: string} ): ReactElement {
   }
 
   const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(num)
+    await navigator.clipboard.writeText(text)
     setCopied(true)
     await resetCopied()
   }
 
   return (
     <div className="flex justify-between text-center gap-2 mb-1.5">
-      <p className="min-w-2/3 border-1 border-gray-300 rounded-md py-2">{num}</p>
+      <p className="min-w-2/3 border-1 border-gray-300 rounded-md py-2">{text}</p>
       <button onClick={copyToClipboard} className="flex justify-center gap-2 grow border-1 border-gray-300 rounded-md p-2 hover:bg-gray-500 hover:text-gray-50 transition-colors hover: cursor-pointer">
         {copied ? "Copied" : "Copy"}
         {copied ? <CopiedIcon /> : <CopyIcon />}
