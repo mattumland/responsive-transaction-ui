@@ -42,13 +42,6 @@ Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
 
 ## Data
 
-* Fetch account numbers in App
-  * Loading spinner until accounts are all fetched
-* Map accounts to create list of Accounts
-  * Props
-  * Name
-  * id
-* Each Account fetches
-  * Loads name immediately
-  * Balance and transactions
-  * Loading text on each account until it is full load
+Promise.All to get the data the fastest.
+Not much gained by separate loading states, might as well get them all the together
+A little prop drilling but not too much (show the specific drop drilling)
