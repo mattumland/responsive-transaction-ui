@@ -16,13 +16,13 @@
 
   h2 {
     font-family: Archivo;
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     font-weight: 600;
   }
 
   h3 {
     font-family: Montserrat;
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     font-weight: 400;
   }
 }

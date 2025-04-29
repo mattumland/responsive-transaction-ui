@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import ClickToCopy from "./ClickToCopy"
 
 interface AccountProps {
   name: string;
@@ -16,13 +17,13 @@ type Balance = {
 
 type BalanceResponse = {
   data: {
-      bank_account_balance: {
-        bank_account_id: string;
-        available_balance_in_cents: number;
-        pending_balance_in_cents: number;
-      }
+    bank_account_balance: {
+      bank_account_id: string;
+      available_balance_in_cents: number;
+      pending_balance_in_cents: number;
     }
   }
+}
 
 const formatBalanceData = (data: BalanceResponse): Balance => {
   const { bank_account_balance } = data.data
@@ -35,7 +36,7 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
   }
 }
 
-function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0' }: AccountProps) {
+function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0', accountNumber = '999999999999', routingNumber = '111111111'}: AccountProps) {
   // const [loading, setLoading] = useState(true)
   const [balance, setBalance] = useState<Balance>()
 
@@ -74,11 +75,17 @@ function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0' }: AccountP
         </DisclosureButton>
         <DisclosurePanel
           transition
-          className="text-gray-600 duration-200 ease-in data-closed:opacity-0"
+          className="text-gray-600 duration-100 ease-in data-closed:opacity-0"
         >
-          <div className="flex justify-between">
-            <p>Pending balance</p>
+          <div className="flex justify-between mt-2">
+            <p className="font-medium">Pending balance</p>
             <p>{balance?.pendingBalance}</p>
+          </div>
+          <div className="mt-2">
+            <p className="font-medium">Account Number</p>
+            <ClickToCopy num={accountNumber}/>
+            <p className="font-medium">Routing Number</p>
+            <ClickToCopy num={routingNumber}/>
           </div>
         </DisclosurePanel>
       </Disclosure>
