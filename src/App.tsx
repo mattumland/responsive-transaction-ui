@@ -2,6 +2,7 @@ import { useState, useEffect, ReactNode } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
 import Account from './components/Account'
+import Transactions from './components/Transactions'
 import Loading from './components/Loading'
 
 const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
@@ -16,9 +17,47 @@ type AccountType = {
     "routing_number": string;
 }
 
+export type TransactionType = {
+  "id": string;
+  "created_at": string;
+  "updated_at": string;
+  "type": string;
+  "date": string;
+  "description": string;
+  "enriched_description": string;
+  "amount_in_cents": number
+  "company_name": string;
+  "trace_number": string;
+  "transaction_id": string;
+  "status": string;
+  "method": string;
+  "company_description": string;
+  "processed_dt": string;
+  "metadata"?: {
+    "institution_payment": {
+      "id": string;
+      "type": string;
+      "status": string;
+      "institution": {
+        "id": string;
+        "name": string;
+      },
+      "beneficiary": {
+        "id": string;
+        "first_name": string;
+        "last_name": string;
+      },
+      "enrollment_period": {
+        "id": string;
+        "description": string;
+      }
+    }
+  }
+}
+
 function App() {
   const [accounts, setAccounts] = useState<AccountType[]>()
-  const [transactions, setTransactions] = useState()
+  const [transactions, setTransactions] = useState<TransactionType[]>()
   const [loading, setLoading] = useState({
     transactions: true,
     accounts: true
@@ -76,13 +115,14 @@ function App() {
         </div>
       </header>
       <section className="p-4">
-        <h1 className='text-bpBlue max-w-6xl m-auto'>Accounts</h1>
+        <h1 className='text-bpBlue max-w-6xl m-auto'>Accounts & Transactions</h1>
         {loading.accounts ?
           <>
             <Loading />
           </>:
           <>{accountCards}</>
         }
+        <Transactions transactionData={transactions}/>
       </section>
     </>
   )
