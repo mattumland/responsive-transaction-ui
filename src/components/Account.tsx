@@ -5,9 +5,9 @@ import ClickToCopy from "./ClickToCopy"
 
 interface AccountProps {
   name: string;
-  id?: string;
-  accountNumber?: string;
-  routingNumber?: string;
+  id: string;
+  accountNumber: string;
+  routingNumber: string;
 }
 
 type Balance = {
@@ -63,12 +63,12 @@ function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0', accountNum
   return (
     <section className="bg-lightGray rounded-lg transition-all duration-500 ease-in ">
       <h2 className="bg-bpBlue text-lightGray p-4 rounded-t-lg">{name}</h2>
-      <div className="p-4 text-right text-gray-600">
+      <div className="min-h-24 p-4 text-right text-gray-600">
         <p className="text-4xl">{balance?.availableBalance}</p>
         <p>Available balance</p>
       </div>
 
-      <Disclosure as="div" className="p-2">
+      <Disclosure as="div" className="p-4">
         <DisclosureButton className="group flex items-center gap-2 text-bpBlue border-b-2 border-transparent hover:border-b-2 hover:border-bpBlue hover:cursor-pointer transition-all">
           <h3>Account Details</h3>
           <ChevronDownIcon className="w-5 group-data-open:rotate-180 transition-all" />
@@ -77,8 +77,8 @@ function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0', accountNum
           transition
           className="text-gray-600 duration-100 ease-in data-closed:opacity-0"
         >
-          <div className="flex justify-between mt-2">
-            <p className="font-medium">Pending balance</p>
+          <div className="flex justify-between mt-2 text-lg">
+            <p>Pending balance</p>
             <p>{balance?.pendingBalance}</p>
           </div>
           <div className="mt-2">

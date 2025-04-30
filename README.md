@@ -42,6 +42,10 @@ Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
 
 ## Data
 
-Promise.All to get the data the fastest.
+Promise.AllSettles to get the data the fastest. "parallel" also allows for more dynamic error handling (see below)
 Not much gained by separate loading states, might as well get them all the together
 A little prop drilling but not too much (show the specific drop drilling)
+
+
+## Error handling
+Might as well take advantage of the fact that have to fetch transactions and accounts separately by creating error handling that can deal with one of those fetches failing, rather than breaking the entire UI if one fails.
