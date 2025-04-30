@@ -60,7 +60,7 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
 
   return (
     <section className="bg-lightGray rounded-lg transition-all duration-500 ease-in ">
-      <h2 className="bg-bpBlue text-lightGray p-4 rounded-t-lg">{name}</h2>
+      <h2 className="bg-bpBlue border-b-1 border-bpBlue text-lightGray p-4 rounded-t-lg">{name}</h2>
       <div className="min-h-24 p-4 text-right text-gray-600">
         <p className="text-4xl">{balance?.availableBalance}</p>
         <p>Available balance</p>

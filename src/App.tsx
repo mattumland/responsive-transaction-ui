@@ -29,7 +29,7 @@ export type TransactionType = {
   "company_name": string;
   "trace_number": string;
   "transaction_id": string;
-  "status": string;
+  "status": "SENT" | "PROCESSING" | "RETURNED" | "PENDING" | "FAILED" | "DONE"
   "method": string;
   "company_description": string;
   "processed_dt": string;

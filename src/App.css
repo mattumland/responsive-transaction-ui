@@ -5,6 +5,9 @@
 @theme {
   --color-bpBlue: #033AFC;
   --color-lightGray: #F7F7F7;
+  --color-fail: #FB5B51;
+  --color-success: #70B45C;
+  --color-pending:#F8C294;
 }
 
 @layer base {

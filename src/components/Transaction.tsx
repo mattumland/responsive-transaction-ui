@@ -24,6 +24,30 @@ type MetadataType = {
   }
 }
 
+interface StatusProps {
+  status: "SENT" | "PROCESSING" | "RETURNED" | "PENDING" | "FAILED" | "DONE"
+}
+
+function StatusDisplay({ status }: StatusProps): React.JSX.Element {
+  let colorClass: string;
+
+  if (status === "SENT" || status === "DONE") {
+      colorClass = "bg-success"
+  } else if (status === "PENDING" || status === "PROCESSING") {
+    colorClass = "bg-pending"
+  } else if (status === "FAILED" || status === "RETURNED") {
+    colorClass = "bg-fail"
+  } else {
+    return (
+      <></>
+    )
+  }
+
+  return (
+    <p className={`${colorClass} text-lightGray font-bold  mt-1 px-2 rounded-md min-w-20 text-center`}>{status}</p>
+  )
+}
+
 function Transaction({ transaction }: TransactionProps): React.JSX.Element {
   const { date, company_name, amount_in_cents, status } = transaction
 
@@ -37,12 +61,12 @@ function Transaction({ transaction }: TransactionProps): React.JSX.Element {
     <div className="mb-5 px-4 text-sm">
       <div className="flex justify-between my-2">
         <div>
-          <p>{date}</p>
-          <p>{company_name}</p>
+          <p>{formatDate(date)}</p>
+          <p className="mt-1">{company_name}</p>
         </div>
         <div>
           <p className="font-bold text-right">{formatAmount(amount_in_cents)}</p>
-          <p className="text-right" >{status}</p>
+          <StatusDisplay status={status} />
         </div>
       </div>
       {metadata &&
@@ -59,8 +83,6 @@ function Transaction({ transaction }: TransactionProps): React.JSX.Element {
         <ClickToCopy text={'117922260519957'} />
       </div>
     </div>
-    // <div className="grid grid-cols-8 grid-rows-1 mb-2 p-4">
-
   )
 }
 
@@ -70,4 +92,13 @@ export default Transaction
 
 const formatAmount = (amount_in_cents: number): string => {
   return (amount_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
+const formatDate = (date: string): string => {
+  const dateObj = new Date(date)
+  return dateObj.toLocaleDateString("ed-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric"
+  })
 }
