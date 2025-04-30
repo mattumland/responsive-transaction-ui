@@ -20,6 +20,11 @@ on how to run the application.
 ## Installation
 THIS IS THE SETUP SECTION
 
+react
+typescript
+tailwind
+headless ui
+
 ## Design & Wireframe
 I used backpack branding (colors, logo, fonts - derived from inspecting the site) and design to develop a basic design system. From there I created simple wireframe, starting with a mobile and then desktop view.
 
@@ -30,19 +35,17 @@ Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
 
 ### Tailwind organization
 1. Display
-2. Size
-3. Margin, border, padding
+2. Color
+3. Size
+4. Margin, border, padding
 
 
 ## Data
 
-* Fetch account numbers in App
-  * Loading spinner until accounts are all fetched
-* Map accounts to create list of Accounts
-  * Props
-  * Name
-  * id
-* Each Account fetches
-  * Loads name immediately
-  * Balance and transactions
-  * Loading text on each account until it is full load
+Promise.AllSettles to get the data the fastest. "parallel" also allows for more dynamic error handling (see below)
+Not much gained by separate loading states, might as well get them all the together
+A little prop drilling but not too much (show the specific drop drilling)
+
+
+## Error handling
+Might as well take advantage of the fact that have to fetch transactions and accounts separately by creating error handling that can deal with one of those fetches failing, rather than breaking the entire UI if one fails.
