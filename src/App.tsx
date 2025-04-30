@@ -118,14 +118,14 @@ function App() {
 
   return (
     <>
-      <header className="p-4 border-solid border-b border-gray-400">
-        <div className="max-w-6xl m-auto">
+      <header className="p-4 border-gray-400 border-b border-solid">
+        <div className="m-auto max-w-6xl">
           <img src={bpLogo} />
         </div>
       </header>
       <main className="p-4">
-        <h1 className='text-bpBlue max-w-6xl m-auto'>Accounts & Transactions</h1>
-        <div className='lg:flex lg:gap-3 max-w-6xl m-auto'>
+        <h1 className='m-auto max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
+        <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
           {loading.accounts ?
             <>
               <Loading />
@@ -133,8 +133,8 @@ function App() {
             <section className="flex-1/3">{accountCards}</section>
           }
 
-          <section className="bg-lightGray rounded-lg mt-4 flex-2/3 lg:mt-0">
-            <h2 className="text-bpBlue p-4 rounded-t-lg border-solid border-b border-gray-400 ">Transactions</h2>
+          <section className="flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg">
+            <h2 className="p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue">Transactions</h2>
             <div>
               {transactionCards}
             </div>

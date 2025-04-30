@@ -78,7 +78,7 @@ function Transaction({ transaction }: TransactionProps): React.JSX.Element {
           </div>
         </div>
       }
-      <div className="border-b-1 border-gray-400 pb-3">
+      <div className="pb-3 border-gray-400 border-b-1">
         <p>Trace Number</p>
         <ClickToCopy text={'117922260519957'} />
       </div>

@@ -59,21 +59,21 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
 
 
   return (
-    <section className="bg-lightGray rounded-lg transition-all duration-500 ease-in ">
-      <h2 className="bg-bpBlue border-b-1 border-bpBlue text-lightGray p-4 rounded-t-lg">{name}</h2>
-      <div className="min-h-24 p-4 text-right text-gray-600">
+    <section className="bg-lightGray rounded-lg transition-all duration-500 ease-in">
+      <h2 className="bg-bpBlue p-4 border-b-1 border-bpBlue rounded-t-lg text-lightGray">{name}</h2>
+      <div className="p-4 min-h-24 text-gray-600 text-right">
         <p className="text-4xl">{balance?.availableBalance}</p>
         <p>Available balance</p>
       </div>
 
       <Disclosure as="div" className="p-4">
-        <DisclosureButton className="group flex items-center gap-2 text-bpBlue border-b-2 border-transparent hover:border-b-2 hover:border-bpBlue hover:cursor-pointer transition-all">
+        <DisclosureButton className="group flex items-center gap-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer">
           <h3>Account Details</h3>
           <ChevronDownIcon className="w-5 group-data-open:rotate-180 transition-all" />
         </DisclosureButton>
         <DisclosurePanel
           transition
-          className="text-gray-600 duration-100 ease-in data-closed:opacity-0"
+          className="data-closed:opacity-0 text-gray-600 duration-100 ease-in"
         >
           <div className="flex justify-between mt-2 text-lg">
             <p>Pending balance</p>
