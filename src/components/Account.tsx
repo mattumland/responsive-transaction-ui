@@ -35,7 +35,6 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
 }
 
 function Account({ name, id, accountNumber, routingNumber }: AccountProps): React.JSX.Element {
-  // const [loading, setLoading] = useState(true)
   const [balance, setBalance] = useState<Balance>()
 
   useEffect(() => {

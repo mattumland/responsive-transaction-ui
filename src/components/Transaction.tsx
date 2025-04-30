@@ -49,7 +49,7 @@ function StatusDisplay({ status }: StatusProps): React.JSX.Element {
 }
 
 function Transaction({ transaction }: TransactionProps): React.JSX.Element {
-  const { date, company_name, amount_in_cents, status } = transaction
+  const { date, company_name, amount_in_cents, status, trace_number } = transaction
 
   let metadata: MetadataType | null = null
   if (transaction.metadata?.institution_payment) {
@@ -80,7 +80,7 @@ function Transaction({ transaction }: TransactionProps): React.JSX.Element {
       }
       <div className="pb-3 border-gray-400 border-b-1">
         <p>Trace Number</p>
-        <ClickToCopy text={'117922260519957'} />
+        <ClickToCopy text={trace_number} />
       </div>
     </div>
   )
