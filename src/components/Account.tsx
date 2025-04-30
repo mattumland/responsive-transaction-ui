@@ -26,17 +26,15 @@ type BalanceResponse = {
 }
 
 const formatBalanceData = (data: BalanceResponse): Balance => {
-  const { bank_account_balance } = data.data
-  const availableDollars = bank_account_balance.available_balance_in_cents/100
-  const pendingDollars = bank_account_balance.pending_balance_in_cents/100
+  const {available_balance_in_cents, pending_balance_in_cents} = data.data.bank_account_balance
 
   return {
-    availableBalance:`$${availableDollars.toFixed(2).toString()}`,
-    pendingBalance: `$${pendingDollars.toFixed(2).toString()}`
+    availableBalance: (available_balance_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
+    pendingBalance: (pending_balance_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
   }
 }
 
-function Account({ name, id = '3e07bdce-b5d5-417e-96bc-77da3c1094f0', accountNumber = '999999999999', routingNumber = '111111111'}: AccountProps): React.JSX.Element {
+function Account({ name, id, accountNumber, routingNumber }: AccountProps): React.JSX.Element {
   // const [loading, setLoading] = useState(true)
   const [balance, setBalance] = useState<Balance>()
 

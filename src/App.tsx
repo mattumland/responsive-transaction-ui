@@ -2,7 +2,7 @@ import { useState, useEffect, ReactNode } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
 import Account from './components/Account'
-import Transactions from './components/Transactions'
+import Transaction from './components/Transaction'
 import Loading from './components/Loading'
 
 const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
@@ -107,6 +107,15 @@ function App() {
     )
   })
 
+  const transactionCards = transactions?.map((transaction: TransactionType): ReactNode => {
+    return (
+      <Transaction
+        transaction={transaction}
+        key={transaction.id}
+      />
+    )
+  })
+
   return (
     <>
       <header className="p-4 border-solid border-b border-gray-400">
@@ -114,16 +123,24 @@ function App() {
           <img src={bpLogo} />
         </div>
       </header>
-      <section className="p-4">
+      <main className="p-4">
         <h1 className='text-bpBlue max-w-6xl m-auto'>Accounts & Transactions</h1>
-        {loading.accounts ?
-          <>
-            <Loading />
-          </>:
-          <>{accountCards}</>
-        }
-        <Transactions transactionData={transactions}/>
-      </section>
+        <div className='lg:flex lg:gap-3 max-w-6xl m-auto'>
+          {loading.accounts ?
+            <>
+              <Loading />
+            </>:
+            <section className="flex-1/3">{accountCards}</section>
+          }
+
+          <section className="bg-lightGray rounded-lg mt-4 flex-2/3 lg:mt-0">
+            <h2 className="text-bpBlue p-4 rounded-t-lg border-solid border-b border-gray-400 ">Transactions</h2>
+            <div>
+              {transactionCards}
+            </div>
+          </section>
+        </div>
+      </main>
     </>
   )
 }
