@@ -1,9 +1,10 @@
-import { useState, useEffect, ReactNode } from 'react'
+import { useState, useEffect, ReactNode, lazy, Suspense } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
-import Account from './components/Account'
 import Transaction from './components/Transaction'
 import Loading from './components/Loading'
+
+const Account = lazy(() => import('./components/Account'))
 
 const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
 
@@ -58,10 +59,6 @@ export type TransactionType = {
 function App() {
   const [accounts, setAccounts] = useState<AccountType[]>()
   const [transactions, setTransactions] = useState<TransactionType[]>()
-  const [loading, setLoading] = useState({
-    transactions: true,
-    accounts: true
-  })
   const [errors, setErrors] = useState({
     transactions: false,
     accounts: false
@@ -73,18 +70,23 @@ function App() {
     const responses = await Promise.allSettled([transRes,accRes])
 
     if (responses[0].status === "fulfilled") {
+      if (!responses[0].value.ok) {
+        setErrors({ ...errors, transactions: true })
+        return
+      }
       const transData = await responses[0].value.json()
       setTransactions(transData.data.transactions)
-      setLoading({...loading, transactions: false})
     } else {
       setErrors({...errors, transactions: true})
     }
 
     if (responses[1].status === "fulfilled") {
+      if (!responses[1].value.ok) {
+        setErrors({ ...errors, accounts: true })
+        return
+      }
       const accData = await responses[1].value.json()
       setAccounts(accData.data.bank_accounts)
-      setLoading({...loading, accounts: false})
-
     } else {
       setErrors({...errors, accounts: true})
     }
@@ -123,22 +125,18 @@ function App() {
         </div>
       </header>
       <main className="p-4">
-        <h1 className='m-auto max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
-        <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
-          {loading.accounts ?
-            <>
-              <Loading />
-            </>:
+        <h1 className='m-auto mb-2 max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
+        <Suspense fallback={<Loading />}>
+          <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
             <section className="flex-1/3">{accountCards}</section>
-          }
-
-          <section className="flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg">
-            <h2 className="p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue">Transactions</h2>
-            <div>
-              {transactionCards}
-            </div>
-          </section>
-        </div>
+            <section className="flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg">
+              <h2 className="p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue">Transactions</h2>
+              <div>
+                {transactionCards}
+              </div>
+            </section>
+          </div>
+        </Suspense>
       </main>
     </>
   )
