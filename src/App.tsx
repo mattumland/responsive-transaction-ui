@@ -120,11 +120,11 @@ function App() {
     <>
       <header className="p-4 border-gray-400 border-b border-solid">
         <div className="m-auto max-w-6xl">
-          <img src={bpLogo} />
+          <img src={bpLogo} alt={"Backpack logo and title"} width="170" height="35"/>
         </div>
       </header>
       <main className="p-4">
-        <h1 className='m-auto max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
+        <h1 className='m-auto max-w-6xl text-bpBlue sm:text-xl'>Accounts & Transactions</h1>
         <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
           {loading.accounts ?
             <>
