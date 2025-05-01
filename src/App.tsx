@@ -10,13 +10,13 @@ const Account = lazy(() => import('./components/Account'))
 const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
 
 type AccountType = {
-    "id": string;
-    "created_at": string;
-    "updated_at": string;
-    "status": string;
-    "name": string;
-    "account_number": string;
-    "routing_number": string;
+    'id': string;
+    'created_at': string;
+    'updated_at': string;
+    'status': string;
+    'name': string;
+    'account_number': string;
+    'routing_number': string;
 }
 
 export type TransactionType = {
@@ -70,7 +70,7 @@ function App() {
     const accRes: Response = await fetch(`${baseUrl}/bank-accounts`)
     const responses = await Promise.allSettled([transRes,accRes])
 
-    if (responses[0].status === "fulfilled") {
+    if (responses[0].status === 'fulfilled') {
       if (!responses[0].value.ok) {
         setErrors({ ...errors, transactions: true })
         return
@@ -81,7 +81,7 @@ function App() {
       setErrors({...errors, transactions: true})
     }
 
-    if (responses[1].status === "fulfilled") {
+    if (responses[1].status === 'fulfilled') {
       if (!responses[1].value.ok) {
         setErrors({ ...errors, accounts: true })
         return
@@ -120,22 +120,22 @@ function App() {
 
   return (
     <>
-      <header className="p-4 border-gray-400 border-b border-solid">
-        <div className="m-auto max-w-6xl">
-          <img src={bpLogo} alt={"Backpack logo and title"} width="170" height="35"/>
+      <header className='p-4 border-gray-400 border-b border-solid'>
+        <div className='m-auto max-w-6xl'>
+          <img src={bpLogo} alt={'Backpack logo and title'} width='170' height='35'/>
         </div>
       </header>
-      <main className="p-4">
+      <main className='p-4'>
         <h1 className='m-auto mb-2 max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
         <Suspense fallback={<Loading />}>
           <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
-            <section className="flex-1/3">
+            <section className='flex-1/3'>
               {errors.accounts ? <ErrorMessage errorData='accounts' /> : accountCards}
             </section>
-            <section className="flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg">
+            <section className='flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg'>
               {errors.transactions ? <ErrorMessage errorData='transactions' /> :
                 <div>
-                  <h2 className="p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue">Transactions</h2>
+                  <h2 className='p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue'>Transactions</h2>
                   <div>
                     {transactionCards}
                   </div>
