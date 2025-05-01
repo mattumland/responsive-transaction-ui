@@ -46,7 +46,7 @@ function StatusDisplay({ status }: StatusProps): React.JSX.Element {
   )
 }
 
-function Transaction({ transaction }: TransactionProps): React.JSX.Element {
+function Transaction({ transaction }: TransactionProps): React.ReactElement {
   const { date, company_name, amount_in_cents, status, trace_number } = transaction
 
   let metadata: MetadataType | null = null

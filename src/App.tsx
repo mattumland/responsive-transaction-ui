@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode, lazy, Suspense } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
 import Transaction from './components/Transaction'
@@ -20,44 +20,44 @@ type AccountType = {
 }
 
 export type TransactionType = {
-  "id": string;
-  "created_at": string;
-  "updated_at": string;
-  "type": string;
-  "date": string;
-  "description": string;
-  "enriched_description": string;
-  "amount_in_cents": number
-  "company_name": string;
-  "trace_number": string;
-  "transaction_id": string;
-  "status": "SENT" | "PROCESSING" | "RETURNED" | "PENDING" | "FAILED" | "DONE"
-  "method": string;
-  "company_description": string;
-  "processed_dt": string;
-  "metadata"?: {
-    "institution_payment": {
-      "id": string;
-      "type": string;
-      "status": string;
-      "institution": {
-        "id": string;
-        "name": string;
+  'id': string;
+  'created_at': string;
+  'updated_at': string;
+  'type': string;
+  'date': string;
+  'description': string;
+  'enriched_description': string;
+  'amount_in_cents': number
+  'company_name': string;
+  'trace_number': string;
+  'transaction_id': string;
+  'status': 'SENT' | 'PROCESSING' | 'RETURNED' | 'PENDING' | 'FAILED' | 'DONE'
+  'method': string;
+  'company_description': string;
+  'processed_dt': string;
+  'metadata'?: {
+    'institution_payment': {
+      'id': string;
+      'type': string;
+      'status': string;
+      'institution': {
+        'id': string;
+        'name': string;
       },
-      "beneficiary": {
-        "id": string;
-        "first_name": string;
-        "last_name": string;
+      'beneficiary': {
+        'id': string;
+        'first_name': string;
+        'last_name': string;
       },
-      "enrollment_period": {
-        "id": string;
-        "description": string;
+      'enrollment_period': {
+        'id': string;
+        'description': string;
       }
     }
   }
 }
 
-function App() {
+function App(): React.ReactElement {
   const [accounts, setAccounts] = useState<AccountType[]>()
   const [transactions, setTransactions] = useState<TransactionType[]>()
   const [errors, setErrors] = useState({
@@ -97,7 +97,7 @@ function App() {
     fetchAccountsAndTransactions()
   }, [])
 
-  const accountCards = accounts?.map((account: AccountType): ReactNode => {
+  const accountCards = accounts?.map((account: AccountType): React.JSX.Element => {
     return (
       <Account
         name={account.name}
@@ -109,7 +109,7 @@ function App() {
     )
   })
 
-  const transactionCards = transactions?.map((transaction: TransactionType): ReactNode => {
+  const transactionCards = transactions?.map((transaction: TransactionType): React.JSX.Element => {
     return (
       <Transaction
         transaction={transaction}

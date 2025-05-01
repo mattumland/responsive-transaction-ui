@@ -17,7 +17,7 @@ function CopiedIcon(): React.JSX.Element {
 }
 
 
-function ClickToCopy( {text}: {text: string} ): React.JSX.Element {
+function ClickToCopy({ text }: { text: string }): React.ReactElement {
   const [copied, setCopied] = useState(false)
 
   const resetCopied = async () => {
