@@ -2,9 +2,9 @@ import icon from '../assets/bp_icon_only.svg'
 
 function Loading(): React.JSX.Element {
   return (
-    <div className="flex flex-col mt-20 text-bpBlue text-center animate-bounce" >
-      <img src={icon} className='m-auto max-w-20'/>
-      <h2>Loading</h2>
+    <div className="mt-20 text-bpBlue text-center" >
+      <img src={icon} alt={"backpack logo"} className='m-auto max-w-20 animate-bounce'/>
+      <h2 className='animate-pulse'>Loading</h2>
     </div>
   )
 }
