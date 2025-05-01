@@ -124,7 +124,7 @@ function App() {
         </div>
       </header>
       <main className="p-4">
-        <h1 className='m-auto max-w-6xl text-bpBlue sm:text-xl'>Accounts & Transactions</h1>
+        <h1 className='m-auto max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
         <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
           {loading.accounts ?
             <>

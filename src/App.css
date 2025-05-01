@@ -28,4 +28,15 @@
     font-size: var(--text-xl);
     font-weight: 600;
   }
+
+  :root {
+    font-family: Montserrat;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
