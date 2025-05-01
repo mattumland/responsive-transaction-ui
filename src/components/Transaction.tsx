@@ -77,7 +77,7 @@ function Transaction({ transaction }: TransactionProps): React.ReactElement {
         </div>
       }
       <Disclosure as='div' className='border-gray-400 border-b-1'>
-        <DisclosureButton className='group flex items-center gap-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer'>
+        <DisclosureButton className='group flex items-center gap-2 mb-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer'>
           <p>Trace Number</p>
           <ChevronDownIcon className='w-5 group-data-open:rotate-180 transition-all' />
         </DisclosureButton>

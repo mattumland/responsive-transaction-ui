@@ -3,6 +3,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import ClickToCopy from './ClickToCopy'
 import ErrorMessage from './Error'
+import { baseUrl } from '../App'
 
 interface AccountProps {
   name: string;
@@ -42,7 +43,7 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
   useEffect(() => {
     const fetchBalance = async (): Promise<any> => {
       try {
-        const response: Response = await fetch(`https://api.dev.backpackpay.com/api/v1/mocks/bank-accounts/${id}/balance`)
+        const response: Response = await fetch(`${baseUrl}/bank-accounts/${id}/balance`)
         if (!response.ok) {
           setError(true)
           return

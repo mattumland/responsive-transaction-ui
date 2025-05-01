@@ -7,7 +7,7 @@ import ErrorMessage from './components/Error'
 
 const Account = lazy(() => import('./components/Account'))
 
-const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
+export const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
 
 type AccountType = {
     'id': string;
