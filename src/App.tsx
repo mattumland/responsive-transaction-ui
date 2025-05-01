@@ -3,6 +3,7 @@ import bpLogo from './assets/bp_icon.svg'
 import './App.css'
 import Transaction from './components/Transaction'
 import Loading from './components/Loading'
+import ErrorMessage from './components/Error'
 
 const Account = lazy(() => import('./components/Account'))
 
@@ -128,12 +129,18 @@ function App() {
         <h1 className='m-auto mb-2 max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
         <Suspense fallback={<Loading />}>
           <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
-            <section className="flex-1/3">{accountCards}</section>
+            <section className="flex-1/3">
+              {errors.accounts ? <ErrorMessage errorData='accounts' /> : accountCards}
+            </section>
             <section className="flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg">
-              <h2 className="p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue">Transactions</h2>
-              <div>
-                {transactionCards}
-              </div>
+              {errors.transactions ? <ErrorMessage errorData='transactions' /> :
+                <div>
+                  <h2 className="p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue">Transactions</h2>
+                  <div>
+                    {transactionCards}
+                  </div>
+                </div>
+              }
             </section>
           </div>
         </Suspense>
