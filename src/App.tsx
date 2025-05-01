@@ -94,7 +94,6 @@ function App() {
     fetchAccountsAndTransactions()
   }, [])
 
-
   const accountCards = accounts?.map((account: AccountType): ReactNode => {
     return (
       <Account

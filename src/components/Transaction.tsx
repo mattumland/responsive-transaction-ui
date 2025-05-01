@@ -1,3 +1,5 @@
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { TransactionType } from "../App"
 import ClickToCopy from "./ClickToCopy"
 
@@ -29,18 +31,14 @@ interface StatusProps {
 }
 
 function StatusDisplay({ status }: StatusProps): React.JSX.Element {
-  let colorClass: string;
+  let colorClass = "bg-gray-400"
 
   if (status === "SENT" || status === "DONE") {
-      colorClass = "bg-success"
+    colorClass = "bg-success"
   } else if (status === "PENDING" || status === "PROCESSING") {
     colorClass = "bg-pending"
   } else if (status === "FAILED" || status === "RETURNED") {
     colorClass = "bg-fail"
-  } else {
-    return (
-      <></>
-    )
   }
 
   return (
@@ -78,27 +76,38 @@ function Transaction({ transaction }: TransactionProps): React.JSX.Element {
           </div>
         </div>
       }
-      <div className="pb-3 border-gray-400 border-b-1">
-        <p>Trace Number</p>
-        <ClickToCopy text={trace_number} />
-      </div>
+      <Disclosure as="div" className="border-gray-400 border-b-1">
+        <DisclosureButton className="group flex items-center gap-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer">
+          <h4>Trace Number</h4>
+          <ChevronDownIcon className="w-5 group-data-open:rotate-180 transition-all" />
+        </DisclosureButton>
+        <DisclosurePanel
+          transition
+          className="data-closed:opacity-0 text-gray-600 duration-100 ease-in"
+        >
+          <div className="mt-2 pb-3 border-gray-400 border-b-1">
+            <ClickToCopy text={trace_number} />
+          </div>
+        </DisclosurePanel>
+      </Disclosure>
     </div>
   )
 }
 
 export default Transaction
 
+
 // helper functions
 
 const formatAmount = (amount_in_cents: number): string => {
-  return (amount_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  return (amount_in_cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
 
 const formatDate = (date: string): string => {
   const dateObj = new Date(date)
   return dateObj.toLocaleDateString("ed-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
+    year: "numeric",
+    month: "short",
+    day: "numeric"
   })
 }
