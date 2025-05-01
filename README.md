@@ -49,3 +49,9 @@ A little prop drilling but not too much (show the specific drop drilling)
 
 ## Error handling
 Might as well take advantage of the fact that have to fetch transactions and accounts separately by creating error handling that can deal with one of those fetches failing, rather than breaking the entire UI if one fails.
+
+### Typing
+Status display has very strict typing, could probably do this for other fields but most of the time I don't care about it. This component requires specific string values, unlike most other times that data is being displayed so I went a little further to ensure yada yada
+
+### What to display
+TRace number - seems like something that might be useful is something went wrong and it's big and long so we might as well use our clicktocopy component to make it more easily useable
