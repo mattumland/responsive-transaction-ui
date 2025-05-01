@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import ClickToCopy from "./ClickToCopy"
+import ErrorMessage from "./Error"
 
 interface AccountProps {
   name: string;
@@ -36,20 +37,20 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
 
 function Account({ name, id, accountNumber, routingNumber }: AccountProps): React.JSX.Element {
   const [balance, setBalance] = useState<Balance>()
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchBalance = async (): Promise<any> => {
       try {
         const response: Response = await fetch(`https://api.dev.backpackpay.com/api/v1/mocks/bank-accounts/${id}/balance`)
         if (!response.ok) {
-          console.error("---SOMETHING WENT WRONG---") //better error, maybe a toast?
+          setError(true)
           return
         }
         const balanceData: BalanceResponse = await response.json()
         setBalance(formatBalanceData(balanceData));
-        // setLoading(false)
       } catch (error) {
-        console.error("Something went wrong:", error) //better error, maybe a toast?
+        setError(true)
       }
     }
 
@@ -60,11 +61,12 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
   return (
     <section className="bg-lightGray rounded-lg transition-all duration-500 ease-in">
       <h2 className="bg-bpBlue p-4 border-b-1 border-bpBlue rounded-t-lg text-lightGray">{name}</h2>
-      <div className="p-4 min-h-24 text-gray-600 text-right">
-        <p className="text-4xl">{balance?.availableBalance}</p>
-        <p>Available balance</p>
-      </div>
-
+      {error ? <ErrorMessage errorData="balance" /> :
+        <div className="p-4 min-h-24 text-gray-600 text-right">
+          <p className="text-4xl">{balance?.availableBalance}</p>
+          <p>Available balance</p>
+        </div>
+      }
       <Disclosure as="div" className="p-4">
         <DisclosureButton className="group flex items-center gap-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer">
           <h3>Account Details</h3>
@@ -74,10 +76,12 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
           transition
           className="data-closed:opacity-0 text-gray-600 duration-100 ease-in"
         >
-          <div className="flex justify-between mt-2 text-lg">
-            <p>Pending balance</p>
-            <p>{balance?.pendingBalance}</p>
-          </div>
+          {!error &&
+            <div className="flex justify-between mt-2 text-lg">
+              <p>Pending balance</p>
+              <p>{balance?.pendingBalance}</p>
+            </div>
+          }
           <div className="mt-2">
             <p className="font-medium">Account Number</p>
             <ClickToCopy text={accountNumber}/>

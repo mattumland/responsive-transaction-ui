@@ -78,7 +78,7 @@ function Transaction({ transaction }: TransactionProps): React.JSX.Element {
       }
       <Disclosure as="div" className="border-gray-400 border-b-1">
         <DisclosureButton className="group flex items-center gap-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer">
-          <h4>Trace Number</h4>
+          <p>Trace Number</p>
           <ChevronDownIcon className="w-5 group-data-open:rotate-180 transition-all" />
         </DisclosureButton>
         <DisclosurePanel
