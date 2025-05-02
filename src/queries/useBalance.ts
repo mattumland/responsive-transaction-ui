@@ -1,4 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { apiUrl } from "../App";
 
 type UseBalance = (
   accountId: string
@@ -29,7 +30,7 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
 }
 
 const fetchBalance = async (id: string) => {
-    const response: Response = await fetch(`${import.meta.env.VITE_API_URL}/bank-accounts/${id}/balance`);
+    const response: Response = await fetch(`${apiUrl}/bank-accounts/${id}/balance`);
 
     const balanceData: BalanceResponse = await response.json();
 
