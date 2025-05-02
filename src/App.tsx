@@ -10,8 +10,6 @@ import { UseTransactions } from './queries/useTransactions'
 const Account = lazy(() => import('./components/Account'))
 const Transactions = lazy(() => import('./components/Transactions'))
 
-export const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
-
 function App(): React.ReactElement {
   const {data: accounts, isError: accountsIsError} = useAccounts()
   const {data: transactions, isError: transactionsIsError} = UseTransactions()

@@ -29,7 +29,7 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
 }
 
 const fetchBalance = async (id: string) => {
-    const response: Response = await fetch(`https://api.dev.backpackpay.com/api/v1/mocks/bank-accounts/${id}/balance`)
+    const response: Response = await fetch(`${import.meta.env.VITE_API_URL}/bank-accounts/${id}/balance`)
 
     const balanceData: BalanceResponse = await response.json()
 
