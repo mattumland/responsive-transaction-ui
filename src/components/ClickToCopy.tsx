@@ -33,10 +33,11 @@ function ClickToCopy({ text }: { text: string }): React.ReactElement {
   }
 
   return (
-    <div className='flex justify-between gap-2 mb-1.5 text-center'>
-      <p className='py-2 border-1 border-gray-300 rounded-md min-w-2/3'>{text}</p>
-      <button onClick={copyToClipboard} className='flex justify-center gap-2 hover:bg-gray-500 p-2 border-1 border-gray-300 rounded-md hover:text-gray-50 transition-colors cursor-pointer grow hover:'>
-        {copied ? 'Copied' : 'Copy'}
+    <div className='flex justify-between gap-2 my-0.5 text-center'>
+      <p className='content-center border-1 border-gray-300 rounded-md min-w-2/3'>{text}</p>
+      <button onClick={copyToClipboard} className='flex justify-center gap-2 hover:bg-gray-500 p-2 border-1 border-gray-300 rounded-md hover:text-gray-50 transition-colors cursor-pointer grow'>
+        {/* {copied ? 'Copied' : 'Copy'} */}
+        {/* <p className='content-center text-xs'>{copied ? 'Copied' : 'Copy'}</p> */}
         {copied ? <CopiedIcon /> : <CopyIcon />}
       </button>
     </div>

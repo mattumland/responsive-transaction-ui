@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
 import Transaction from './components/Transaction'
+import Transactions from './components/Transactions'
 import Loading from './components/Loading'
 import ErrorMessage from './components/Error'
 
@@ -58,8 +59,8 @@ export type TransactionType = {
 }
 
 function App(): React.ReactElement {
-  const [accounts, setAccounts] = useState<AccountType[]>()
-  const [transactions, setTransactions] = useState<TransactionType[]>()
+  const [accounts, setAccounts] = useState<AccountType[] | null>(null)
+  const [transactions, setTransactions] = useState<TransactionType[] | null>(null)
   const [errors, setErrors] = useState({
     transactions: false,
     accounts: false
@@ -121,27 +122,25 @@ function App(): React.ReactElement {
   return (
     <>
       <header className='p-4 border-gray-400 border-b border-solid'>
-        <div className='m-auto max-w-6xl'>
+        <div className='m-auto'>
           <img src={bpLogo} alt={'Backpack logo and title'} width='170' height='35'/>
         </div>
       </header>
       <main className='p-4'>
-        <h1 className='m-auto mb-2 max-w-6xl text-bpBlue'>Accounts & Transactions</h1>
+        <h1 className='m-auto mb-2 text-bpBlue'>Accounts & Transactions</h1>
         <Suspense fallback={<Loading />}>
-          <div className='lg:flex lg:gap-3 m-auto max-w-6xl'>
-            <section className='flex-1/3'>
+          <div className='lg:flex lg:gap-3 m-auto'>
+            <section className='min-w-1/4'>
               {errors.accounts ? <ErrorMessage errorData='accounts' /> : accountCards}
             </section>
-            <section className='flex-2/3 bg-lightGray mt-4 lg:mt-0 rounded-lg'>
-              {errors.transactions ? <ErrorMessage errorData='transactions' /> :
-                <div>
-                  <h2 className='p-4 border-gray-400 border-b border-solid rounded-t-lg text-bpBlue'>Transactions</h2>
-                  <div>
-                    {transactionCards}
-                  </div>
-                </div>
-              }
+            <section className='flex-4/5 bg-lightGray mt-4 lg:mt-0 rounded-lg'>
+              {errors.transactions ? <ErrorMessage errorData='transactions' /> : <Transactions transactions={transactions} />}
             </section>
+              {/* {errors.transactions ? <ErrorMessage errorData='transactions' /> :
+                <div>
+                  {transactionCards}
+                </div>
+              } */}
           </div>
         </Suspense>
       </main>

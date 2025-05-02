@@ -55,9 +55,8 @@ function Transaction({ transaction }: TransactionProps): React.ReactElement {
   }
 
   return (
-
     <div className='mb-5 px-4 text-sm'>
-      <div className='flex justify-between my-2'>
+      <div className='lg:hidden flex justify-between my-2'>
         <div>
           <p>{formatDate(date)}</p>
           <p className='mt-1'>{company_name}</p>
@@ -68,15 +67,15 @@ function Transaction({ transaction }: TransactionProps): React.ReactElement {
         </div>
       </div>
       {metadata &&
-        <div className='mb-2'>
+        <div className='lg:hidden mb-2'>
           <p className='self-end font-bold'>{`${metadata.beneficiary.first_name} ${metadata.beneficiary.last_name}`}</p>
           <div className='flex justify-between'>
-            <p className='row-start-4'>{metadata.institution.name}</p>
-            <p className='row-start-4'>{`${metadata.enrollment_period.description} ${metadata.type.toLowerCase()}`}</p>
+            <p>{metadata.institution.name}</p>
+            <p>{`${metadata.enrollment_period.description} ${metadata.type.toLowerCase()}`}</p>
           </div>
         </div>
       }
-      <Disclosure as='div' className='border-gray-400 border-b-1'>
+      <Disclosure as='div' className='lg:hidden border-gray-400 border-b-1'>
         <DisclosureButton className='group flex items-center gap-2 mb-2 border-transparent border-b-2 hover:border-b-2 hover:border-bpBlue text-bpBlue transition-all hover:cursor-pointer'>
           <p>Trace Number</p>
           <ChevronDownIcon className='w-5 group-data-open:rotate-180 transition-all' />
