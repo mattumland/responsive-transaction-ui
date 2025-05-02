@@ -1,20 +1,20 @@
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { TransactionType, MetadataType } from '../types'
-import ClickToCopy from './ClickToCopy'
-import StatusDisplay from './StatusDisplay'
-import { formatAmount, formatDate } from '../utils'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { TransactionType, MetadataType } from '../types';
+import ClickToCopy from './ClickToCopy';
+import StatusDisplay from './StatusDisplay';
+import { formatAmount, formatDate } from '../utils';
 
 interface TransactionProps {
   transaction: TransactionType
 }
 
 const TransactionCard: React.FC<TransactionProps> = ({ transaction }) => {
-  const { date, company_name, amount_in_cents, status, trace_number } = transaction
+  const { date, company_name, amount_in_cents, status, trace_number } = transaction;
 
-  let metadata: MetadataType | null = null
+  let metadata: MetadataType | null = null;
   if (transaction.metadata?.institution_payment) {
-    metadata = transaction.metadata.institution_payment
+    metadata = transaction.metadata.institution_payment;
   }
 
   return (
@@ -53,7 +53,7 @@ const TransactionCard: React.FC<TransactionProps> = ({ transaction }) => {
         </DisclosurePanel>
       </Disclosure>
     </div>
-  )
-}
+  );
+};
 
-export default TransactionCard
+export default TransactionCard;

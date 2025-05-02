@@ -29,11 +29,11 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
 }
 
 const fetchBalance = async (id: string) => {
-    const response: Response = await fetch(`${import.meta.env.VITE_API_URL}/bank-accounts/${id}/balance`)
+    const response: Response = await fetch(`${import.meta.env.VITE_API_URL}/bank-accounts/${id}/balance`);
 
-    const balanceData: BalanceResponse = await response.json()
+    const balanceData: BalanceResponse = await response.json();
 
-    return formatBalanceData(balanceData)
+    return formatBalanceData(balanceData);
 }
 
 export const useBalance: UseBalance = (accountId) =>

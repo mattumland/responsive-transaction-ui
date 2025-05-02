@@ -1,8 +1,8 @@
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import ClickToCopy from './ClickToCopy'
-import ErrorMessage from './Error'
-import { useBalance } from '../queries/useBalance'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import ClickToCopy from './ClickToCopy';
+import ErrorMessage from './Error';
+import { useBalance } from '../queries/useBalance';
 
 interface AccountProps {
   name: string;
@@ -47,7 +47,7 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
         </DisclosurePanel>
       </Disclosure>
     </section>
-  )
-}
+  );
+};
 
-export default Account
+export default Account;

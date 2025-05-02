@@ -1,6 +1,6 @@
-import { TransactionType } from "../types"
-import TransactionCard from "./TransactionCard"
-import TransactionRow from "./TransactionRow"
+import { TransactionType } from "../types";
+import TransactionCard from "./TransactionCard";
+import TransactionRow from "./TransactionRow";
 
 interface TransactionsProps {
   transactions: TransactionType[] | undefined
@@ -13,8 +13,8 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         transaction={transaction}
         key={transaction.id}
       />
-    )
-  })
+    );
+  });
 
   const transCards = transactions?.map((transaction: TransactionType): React.JSX.Element => {
     return (
@@ -22,8 +22,8 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         transaction={transaction}
         key={transaction.id}
       />
-    )
-  })
+    );
+  });
 
   return (
     <>
@@ -51,7 +51,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
           </div>
         </div>
     </>
-  )
-}
+  );
+};
 
-export default Transactions
+export default Transactions;

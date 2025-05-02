@@ -6,7 +6,7 @@ const Loading: React.FC = () => {
       <img src={icon} alt={'backpack logo'} className='m-auto max-w-20 animate-bounce'/>
       <h2 className='animate-pulse'>Loading</h2>
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

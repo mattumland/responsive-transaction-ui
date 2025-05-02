@@ -9,7 +9,7 @@ const ErrorMessage: React.FC<ErrorProps> = ({ errorData }) => {
       <p>{`Something went wrong while loading your ${errorData}.`}</p>
       <p>Please reload the page to try again.</p>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorMessage
+export default ErrorMessage;

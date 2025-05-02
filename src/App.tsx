@@ -1,20 +1,20 @@
-import { lazy, Suspense } from 'react'
-import bpLogo from './assets/bp_icon.svg'
-import './App.css'
-import Loading from './components/Loading'
-import ErrorMessage from './components/Error'
-import { AccountType, TransactionType } from './types'
-import { useAccounts } from './queries/useAccounts'
-import { UseTransactions } from './queries/useTransactions'
+import { lazy, Suspense } from 'react';
+import bpLogo from './assets/bp_icon.svg';
+import './App.css';
+import Loading from './components/Loading';
+import ErrorMessage from './components/Error';
+import { AccountType } from './types';
+import { useAccounts } from './queries/useAccounts';
+import { UseTransactions } from './queries/useTransactions';
 
-const Account = lazy(() => import('./components/Account'))
-const Transactions = lazy(() => import('./components/Transactions'))
+const Account = lazy(() => import('./components/Account'));
+const Transactions = lazy(() => import('./components/Transactions'));
 
 function App(): React.ReactElement {
-  const {data: accounts, isError: accountsIsError} = useAccounts()
-  const {data: transactions, isError: transactionsIsError} = UseTransactions()
+  const {data: accounts, isError: accountsIsError} = useAccounts();
+  const {data: transactions, isError: transactionsIsError} = UseTransactions();
 
-  const activeAccounts = accounts?.filter(account => account.status === "ACTIVE")
+  const activeAccounts = accounts?.filter(account => account.status === "ACTIVE");
 
   const accountCards = activeAccounts?.map((account: AccountType): React.JSX.Element => {
     return (
@@ -25,8 +25,8 @@ function App(): React.ReactElement {
         routingNumber={account.routing_number}
         key={account.id}
       />
-    )
-  })
+    );
+  });
 
   return (
     <>
@@ -49,7 +49,7 @@ function App(): React.ReactElement {
         </Suspense>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
