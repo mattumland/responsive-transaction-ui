@@ -3,7 +3,7 @@ import TransactionCard from "./TransactionCard"
 import TransactionRow from "./TransactionRow"
 
 interface TransactionsProps {
-  transactions: TransactionType[] | null
+  transactions: TransactionType[] | undefined
 }
 
 const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
