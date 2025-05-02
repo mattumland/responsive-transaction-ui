@@ -3,14 +3,23 @@ interface StatusProps {
 }
 
 const StatusDisplay: React.FC<StatusProps> = ({ status }) => {
-  let colorClass = 'bg-gray-400';
-
-  if (status === 'SENT' || status === 'DONE') {
-    colorClass = 'bg-success'
-  } else if (status === 'PENDING' || status === 'PROCESSING') {
-    colorClass = 'bg-pending'
-  } else if (status === 'FAILED' || status === 'RETURNED') {
-    colorClass = 'bg-fail'
+  let colorClass: string
+  switch (status) {
+    case "SENT":
+    case "DONE":
+      colorClass = "bg-success"
+      break;
+    case "PENDING":
+    case "PROCESSING":
+      colorClass = "bg-pending"
+      break;
+    case "FAILED":
+    case "RETURNED":
+      colorClass = "bg-fail"
+      break;
+    default:
+      colorClass = "bg-gray-400"
+      break;
   }
 
   return (
