@@ -25,6 +25,9 @@ typescript
 tailwind
 headless ui
 
+create env variable with the base url
+make a sample env
+
 ## Design & Wireframe
 I used backpack branding (colors, logo, fonts - derived from inspecting the site) and design to develop a basic design system. From there I created simple wireframe, starting with a mobile and then desktop view.
 
