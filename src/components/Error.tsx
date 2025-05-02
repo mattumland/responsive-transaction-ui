@@ -2,7 +2,7 @@ interface ErrorProps {
   errorData: string;
 }
 
-function ErrorMessage({ errorData }: ErrorProps): React.ReactElement {
+const ErrorMessage: React.FC<ErrorProps> = ({ errorData }) => {
   return (
     <div className='bg-lightGray p-4 rounded-lg min-h- text-bpBlue text-center'>
       <h2>Uh oh.</h2>
