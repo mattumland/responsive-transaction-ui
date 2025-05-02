@@ -14,7 +14,9 @@ function App(): React.ReactElement {
   const {data: accounts, isError: accountsIsError} = useAccounts()
   const {data: transactions, isError: transactionsIsError} = UseTransactions()
 
-  const accountCards = accounts?.map((account: AccountType): React.JSX.Element => {
+  const activeAccounts = accounts?.filter(account => account.status === "ACTIVE")
+
+  const accountCards = activeAccounts?.map((account: AccountType): React.JSX.Element => {
     return (
       <Account
         name={account.name}
