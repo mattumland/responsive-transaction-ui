@@ -1,31 +1,12 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { TransactionType } from '../App'
+import { TransactionType, MetadataType } from '../types'
 import ClickToCopy from './ClickToCopy'
+import { formatAmount } from '../utils'
 
 interface TransactionProps {
   transaction: TransactionType
 }
-
-type MetadataType = {
-  'id': string;
-  'type': string;
-  'status': string;
-  'institution': {
-    'id': string;
-    'name': string;
-  },
-  'beneficiary': {
-    'id': string;
-    'first_name': string;
-    'last_name': string;
-  },
-  'enrollment_period': {
-    'id': string;
-    'description': string;
-  }
-}
-
 interface StatusProps {
   status: 'SENT' | 'PROCESSING' | 'RETURNED' | 'PENDING' | 'FAILED' | 'DONE'
 }
@@ -97,10 +78,6 @@ export default Transaction
 
 
 // helper functions
-
-const formatAmount = (amount_in_cents: number): string => {
-  return (amount_in_cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-}
 
 const formatDate = (date: string): string => {
   const dateObj = new Date(date)

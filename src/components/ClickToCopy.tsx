@@ -26,7 +26,7 @@ function ClickToCopy({ text }: { text: string }): React.ReactElement {
     }, 3000)
   }
 
-  const copyToClipboard = async (): Promise<any> => {
+  const copyToClipboard = async (): Promise<void> => {
     await navigator.clipboard.writeText(text)
     setCopied(true)
     await resetCopied()

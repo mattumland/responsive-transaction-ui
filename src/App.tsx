@@ -5,58 +5,12 @@ import Transaction from './components/Transaction'
 import Transactions from './components/Transactions'
 import Loading from './components/Loading'
 import ErrorMessage from './components/Error'
+import { AccountType, TransactionType } from './types'
 
 const Account = lazy(() => import('./components/Account'))
 
 export const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
 
-type AccountType = {
-    'id': string;
-    'created_at': string;
-    'updated_at': string;
-    'status': string;
-    'name': string;
-    'account_number': string;
-    'routing_number': string;
-}
-
-export type TransactionType = {
-  'id': string;
-  'created_at': string;
-  'updated_at': string;
-  'type': string;
-  'date': string;
-  'description': string;
-  'enriched_description': string;
-  'amount_in_cents': number
-  'company_name': string;
-  'trace_number': string;
-  'transaction_id': string;
-  'status': 'SENT' | 'PROCESSING' | 'RETURNED' | 'PENDING' | 'FAILED' | 'DONE'
-  'method': string;
-  'company_description': string;
-  'processed_dt': string;
-  'metadata'?: {
-    'institution_payment': {
-      'id': string;
-      'type': string;
-      'status': string;
-      'institution': {
-        'id': string;
-        'name': string;
-      },
-      'beneficiary': {
-        'id': string;
-        'first_name': string;
-        'last_name': string;
-      },
-      'enrollment_period': {
-        'id': string;
-        'description': string;
-      }
-    }
-  }
-}
 
 function App(): React.ReactElement {
   const [accounts, setAccounts] = useState<AccountType[] | null>(null)
@@ -66,7 +20,7 @@ function App(): React.ReactElement {
     accounts: false
   })
 
-  const fetchAccountsAndTransactions = async (): Promise<any> => {
+  const fetchAccountsAndTransactions = async (): Promise<void> => {
     const transRes: Response = await fetch(`${baseUrl}/transactions`)
     const accRes: Response = await fetch(`${baseUrl}/bank-accounts`)
     const responses = await Promise.allSettled([transRes,accRes])
@@ -129,11 +83,11 @@ function App(): React.ReactElement {
       <main className='p-4'>
         <h1 className='m-auto mb-2 text-bpBlue'>Accounts & Transactions</h1>
         <Suspense fallback={<Loading />}>
-          <div className='lg:flex lg:gap-3 m-auto'>
+          <div className='xl:flex lg:gap-3 m-auto'>
             <section className='min-w-1/4'>
               {errors.accounts ? <ErrorMessage errorData='accounts' /> : accountCards}
             </section>
-            <section className='flex-4/5 bg-lightGray mt-4 lg:mt-0 rounded-lg'>
+            <section className='flex-4/5 bg-lightGray mt-4 lg:mt-4 xl:mt-0 rounded-lg'>
               {errors.transactions ? <ErrorMessage errorData='transactions' /> : <Transactions transactions={transactions} />}
             </section>
               {/* {errors.transactions ? <ErrorMessage errorData='transactions' /> :

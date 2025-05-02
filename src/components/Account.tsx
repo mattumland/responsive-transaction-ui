@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { formatAmount } from '../utils'
 import ClickToCopy from './ClickToCopy'
 import ErrorMessage from './Error'
 import { baseUrl } from '../App'
@@ -31,8 +32,8 @@ const formatBalanceData = (data: BalanceResponse): Balance => {
   const {available_balance_in_cents, pending_balance_in_cents} = data.data.bank_account_balance
 
   return {
-    availableBalance: (available_balance_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
-    pendingBalance: (pending_balance_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    availableBalance: formatAmount(available_balance_in_cents),
+    pendingBalance: formatAmount(pending_balance_in_cents)
   }
 }
 
@@ -41,7 +42,7 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    const fetchBalance = async (): Promise<any> => {
+    const fetchBalance = async (): Promise<void> => {
       try {
         const response: Response = await fetch(`${baseUrl}/bank-accounts/${id}/balance`)
         if (!response.ok) {
