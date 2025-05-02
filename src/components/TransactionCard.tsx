@@ -2,32 +2,14 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { TransactionType, MetadataType } from '../types'
 import ClickToCopy from './ClickToCopy'
-import { formatAmount } from '../utils'
+import StatusDisplay from './StatusDisplay'
+import { formatAmount, formatDate } from '../utils'
 
 interface TransactionProps {
   transaction: TransactionType
 }
-interface StatusProps {
-  status: 'SENT' | 'PROCESSING' | 'RETURNED' | 'PENDING' | 'FAILED' | 'DONE'
-}
 
-function StatusDisplay({ status }: StatusProps): React.JSX.Element {
-  let colorClass = 'bg-gray-400'
-
-  if (status === 'SENT' || status === 'DONE') {
-    colorClass = 'bg-success'
-  } else if (status === 'PENDING' || status === 'PROCESSING') {
-    colorClass = 'bg-pending'
-  } else if (status === 'FAILED' || status === 'RETURNED') {
-    colorClass = 'bg-fail'
-  }
-
-  return (
-    <p className={`${colorClass} text-lightGray font-bold  mt-1 px-2 rounded-md min-w-20 text-center`}>{status}</p>
-  )
-}
-
-function Transaction({ transaction }: TransactionProps): React.ReactElement {
+const TransactionCard: React.FC<TransactionProps> = ({ transaction }) => {
   const { date, company_name, amount_in_cents, status, trace_number } = transaction
 
   let metadata: MetadataType | null = null
@@ -74,16 +56,4 @@ function Transaction({ transaction }: TransactionProps): React.ReactElement {
   )
 }
 
-export default Transaction
-
-
-// helper functions
-
-const formatDate = (date: string): string => {
-  const dateObj = new Date(date)
-  return dateObj.toLocaleDateString('ed-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
+export default TransactionCard

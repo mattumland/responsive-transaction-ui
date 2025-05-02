@@ -1,7 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import bpLogo from './assets/bp_icon.svg'
 import './App.css'
-import Transaction from './components/Transaction'
 import Transactions from './components/Transactions'
 import Loading from './components/Loading'
 import ErrorMessage from './components/Error'
@@ -10,7 +9,6 @@ import { AccountType, TransactionType } from './types'
 const Account = lazy(() => import('./components/Account'))
 
 export const baseUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
-
 
 function App(): React.ReactElement {
   const [accounts, setAccounts] = useState<AccountType[] | null>(null)
@@ -64,15 +62,6 @@ function App(): React.ReactElement {
     )
   })
 
-  const transactionCards = transactions?.map((transaction: TransactionType): React.JSX.Element => {
-    return (
-      <Transaction
-        transaction={transaction}
-        key={transaction.id}
-      />
-    )
-  })
-
   return (
     <>
       <header className='p-4 border-gray-400 border-b border-solid'>
@@ -90,11 +79,6 @@ function App(): React.ReactElement {
             <section className='flex-4/5 bg-lightGray mt-4 lg:mt-4 xl:mt-0 rounded-lg'>
               {errors.transactions ? <ErrorMessage errorData='transactions' /> : <Transactions transactions={transactions} />}
             </section>
-              {/* {errors.transactions ? <ErrorMessage errorData='transactions' /> :
-                <div>
-                  {transactionCards}
-                </div>
-              } */}
           </div>
         </Suspense>
       </main>

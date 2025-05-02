@@ -1,58 +1,24 @@
-import { TransactionType, MetadataType } from "../types"
-import { formatAmount } from "../utils"
-import Transaction from "./Transaction"
-import ClickToCopy from "./ClickToCopy"
+import { TransactionType } from "../types"
+import TransactionCard from "./TransactionCard"
+import TransactionRow from "./TransactionRow"
 
 interface TransactionsProps {
   transactions: TransactionType[] | null
 }
 
-interface StatusProps {
-  status: 'SENT' | 'PROCESSING' | 'RETURNED' | 'PENDING' | 'FAILED' | 'DONE'
-}
-
-function StatusDisplay({ status }: StatusProps): React.JSX.Element {
-  let colorClass = 'bg-gray-400'
-
-  if (status === 'SENT' || status === 'DONE') {
-    colorClass = 'bg-success'
-  } else if (status === 'PENDING' || status === 'PROCESSING') {
-    colorClass = 'bg-pending'
-  } else if (status === 'FAILED' || status === 'RETURNED') {
-    colorClass = 'bg-fail'
-  }
-
-  return (
-    <p className={`${colorClass} text-lightGray font-bold rounded-md text-center max-w-3/4 lg:max-w-full lg:mr-2`}>{status}</p>
-  )
-}
-
-function Transactions({ transactions }: TransactionsProps): React.ReactElement {
-  const transRows = transactions?.map((trans: TransactionType): React.JSX.Element => {
-    const { date, company_name, amount_in_cents, status, trace_number, id } = trans
-
-    let metadata: MetadataType | null = null
-    if (trans.metadata?.institution_payment) {
-      metadata = trans.metadata.institution_payment
-    }
-
+const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
+  const transRows = transactions?.map((transaction: TransactionType): React.JSX.Element => {
     return (
-      <tr className='text-left' key={id}>
-        <td>{formatDate(date)}</td>
-        <td>{company_name}</td>
-        <td className='font-bold'>{formatAmount(amount_in_cents)}</td>
-        <td><StatusDisplay status={status} /></td>
-        <td>{metadata ? `${metadata.beneficiary.first_name} ${metadata.beneficiary.last_name}` : ""}</td>
-        <td>{metadata ? metadata.institution.name : ""}</td>
-        <td>{metadata ? `${metadata.enrollment_period.description} ${metadata.type.toLowerCase()}` : ""}</td>
-        <td><ClickToCopy text={trace_number} /></td>
-      </tr>
+      <TransactionRow
+        transaction={transaction}
+        key={transaction.id}
+      />
     )
   })
 
   const transCards = transactions?.map((transaction: TransactionType): React.JSX.Element => {
     return (
-      <Transaction
+      <TransactionCard
         transaction={transaction}
         key={transaction.id}
       />
@@ -89,14 +55,3 @@ function Transactions({ transactions }: TransactionsProps): React.ReactElement {
 }
 
 export default Transactions
-
-// helper functions
-
-const formatDate = (date: string): string => {
-  const dateObj = new Date(date)
-  return dateObj.toLocaleDateString('ed-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  })
-}
