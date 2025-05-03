@@ -23,7 +23,7 @@ const StatusDisplay: React.FC<StatusProps> = ({ status }) => {
   }
 
   return (
-    <p className={`${colorClass} text-lightGray font-bold  mt-1 px-2 rounded-md min-w-20 text-center lg:max-w-full lg:mr-2`}>{status}</p>
+    <p className={`${colorClass} text-white font-bold  mt-1 px-2 rounded-md min-w-20 text-center lg:max-w-full lg:mr-2`}>{status}</p>
   );
 };
 
