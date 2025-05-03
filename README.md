@@ -40,6 +40,13 @@ The design is based on elements from the Backpack website including colors, logo
 Header Font - [Archivo](https://fonts.google.com/specimen/Archivo)<br />
 Body Font - [Montserrat](https://fonts.google.com/specimen/Montserrat )
 
+### Colors
+Backpack Blue: #033AFC;  
+Light Gray: #F7F7F7;  
+Fail Status: #FB5B51;  
+Success Status: #70B45C;  
+Pending Status: #F8C294;  
+
 ## App Organization
 The app has three primary components for displaying data:
 1. **App.tsx** - main UI that contains the sub-UIs under a header
