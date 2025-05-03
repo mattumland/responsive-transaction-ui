@@ -10,11 +10,11 @@ import { UseTransactions } from './queries/useTransactions';
 const Account = lazy(() => import('./components/Account'));
 const Transactions = lazy(() => import('./components/Transactions'));
 
-export const apiUrl = 'https://api.dev.backpackpay.com/api/v1/mocks'
+export const apiUrl = 'https://api.dev.backpackpay.com/api/v1/mocks';
 
 function App(): React.ReactElement {
-  const {data: accounts, isError: accountsIsError} = useAccounts();
-  const {data: transactions, isError: transactionsIsError} = UseTransactions();
+  const { data: accounts, isError: accountsIsError } = useAccounts();
+  const { data: transactions, isError: transactionsIsError } = UseTransactions();
 
   const activeAccounts = accounts?.filter(account => account.status === "ACTIVE");
 
@@ -34,7 +34,7 @@ function App(): React.ReactElement {
     <>
       <header className='p-4 border-gray-400 border-b border-solid'>
         <div className='m-auto'>
-          <img src={bpLogo} alt={'Backpack logo and title'} width='170' height='35'/>
+          <img src={bpLogo} alt={'Backpack logo and title'} width='170' height='35' />
         </div>
       </header>
       <main className='p-4'>

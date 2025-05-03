@@ -8,11 +8,11 @@ const fetchTransactions = async (): Promise<void> => {
   const response: Response = await fetch(`${apiUrl}/transactions`);
   const transactionData = await response.json();
 
-  return transactionData.data.transactions
-}
+  return transactionData.data.transactions;
+};
 
-  export const UseTransactions: UseTransactions = () =>
-    useQuery({
-      queryKey: ["transactions"],
-      queryFn: () => fetchTransactions()
-    });
+export const UseTransactions: UseTransactions = () =>
+  useQuery({
+    queryKey: ["transactions"],
+    queryFn: () => fetchTransactions(),
+  });

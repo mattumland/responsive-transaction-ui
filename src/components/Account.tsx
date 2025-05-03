@@ -40,9 +40,9 @@ function Account({ name, id, accountNumber, routingNumber }: AccountProps): Reac
           }
           <div className='mt-2'>
             <p className='font-medium'>Account Number</p>
-            <ClickToCopy text={accountNumber}/>
+            <ClickToCopy text={accountNumber} />
             <p className='font-medium'>Routing Number</p>
-            <ClickToCopy text={routingNumber}/>
+            <ClickToCopy text={routingNumber} />
           </div>
         </DisclosurePanel>
       </Disclosure>

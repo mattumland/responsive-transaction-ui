@@ -8,11 +8,11 @@ const fetchAccounts = async (): Promise<void> => {
   const response: Response = await fetch(`${apiUrl}/bank-accounts`);
   const accountData = await response.json();
 
-  return accountData.data.bank_accounts
-}
+  return accountData.data.bank_accounts;
+};
 
-  export const useAccounts: UseAccounts = () =>
-    useQuery({
-      queryKey: ["accounts"],
-      queryFn: () => fetchAccounts()
-    });
+export const useAccounts: UseAccounts = () =>
+  useQuery({
+    queryKey: ["accounts"],
+    queryFn: () => fetchAccounts(),
+  });

@@ -1,9 +1,7 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { apiUrl } from "../App";
 
-type UseBalance = (
-  accountId: string
-) => UseQueryResult<Balance, Error>;
+type UseBalance = (accountId: string) => UseQueryResult<Balance, Error>;
 
 type Balance = {
   availableBalance: string;
@@ -16,26 +14,35 @@ type BalanceResponse = {
       bank_account_id: string;
       available_balance_in_cents: number;
       pending_balance_in_cents: number;
-    }
-  }
-}
+    };
+  };
+};
 
 const formatBalanceData = (data: BalanceResponse): Balance => {
-  const {available_balance_in_cents, pending_balance_in_cents} = data.data.bank_account_balance
+  const { available_balance_in_cents, pending_balance_in_cents } =
+    data.data.bank_account_balance;
 
   return {
-    availableBalance: (available_balance_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
-    pendingBalance: (pending_balance_in_cents/100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-  }
-}
+    availableBalance: (available_balance_in_cents / 100).toLocaleString(
+      "en-US",
+      { style: "currency", currency: "USD" }
+    ),
+    pendingBalance: (pending_balance_in_cents / 100).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    }),
+  };
+};
 
 const fetchBalance = async (id: string) => {
-    const response: Response = await fetch(`${apiUrl}/bank-accounts/${id}/balance`);
+  const response: Response = await fetch(
+    `${apiUrl}/bank-accounts/${id}/balance`
+  );
 
-    const balanceData: BalanceResponse = await response.json();
+  const balanceData: BalanceResponse = await response.json();
 
-    return formatBalanceData(balanceData);
-}
+  return formatBalanceData(balanceData);
+};
 
 export const useBalance: UseBalance = (accountId) =>
   useQuery({
