@@ -1,4 +1,4 @@
-# Backpack Front End Take Home
+# Responsive Transaction UI
 
 ## Project Requirements
 Build a UI that displays a customer’s bank account and routing
